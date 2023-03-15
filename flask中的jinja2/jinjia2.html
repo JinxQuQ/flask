@@ -1,0 +1,29 @@
+<!--jinja2 模板文件混合 html 语法与 jinja2 语法，使用分界符区分 html 语法与 jinja2 语法。有 5 种常见的分界符：-->
+
+<!--{{ 变量 }}，将变量放置在 {{ 和 }} 之间；-->
+<!--{% 语句 %}，将语句放置在 {% 和 %} 之间；-->
+<!--# 语句，将语句放置在 # 之后；-->
+<!--{# 注释 #}，将注释放置在 {# 和 #} 之间；-->
+<!--## 注释，将注释放置在 # 之后。-->
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  {{ variable }}
+
+  <ul>
+  {% for item in seq %}
+    <li>{{ item }}</li>
+  {% endfor %}
+  </ul>
+
+  <ul>
+  # for item in seq
+    <li>{{ item }}</li>
+  # endfor
+  </ul>
+
+  {# this is comment #}
+  ## this is comment
+</body>
+</html>
