@@ -60,3 +60,5 @@
 关于with app.app_context():
 
 见[flask中的回调报错Traceback (most recent call last)](https://juejin.cn/post/7220299565007044667/)
+
+![](.flask中的orm映射_images/e6d38077.png)
