@@ -26,6 +26,8 @@
     INSERT students(sno, name, age) VALUES(1, 'tom', 11);
     INSERT students(sno, name, age) VALUES(2, 'jerry', 12);
     INSERT students(sno, name, age) VALUES(3, 'mike', 13);
+![](.flask中的orm映射_images/2c52ab0c.png)
+
 首先，如果存在数据库 school 则删除，然后建立一个新的、空的数据库 school；然后，创建表 students；最后，向数据库的表 students 中插入 3 条记录用于测试。
 
 备注：这些语句要挨个执行，可能要逐句执行，全部执行会报错

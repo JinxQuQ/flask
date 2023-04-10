@@ -1,8 +1,8 @@
+# 首先引入库 flask 和库 flask_sqlalchemy；
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
 # 在安装flask_sqlalchemy时，需要在“文件-设置-python解释器”中手动搜索时将下划线改为短横杠
-# 首先引入库 flask 和库 flask_sqlalchemy；
+
 app = Flask(__name__)
 
 # 然后对 SQLAlchemy 进行配置，设置如下参数：
@@ -14,7 +14,7 @@ user = 'root'
 password = '123456'
 database = 'school'
 
-# 在第 10 行，对 SQLAlchemy 进行配置，SQLALCHEMY_DATABASE_URI 配置的是连接数据库的字符串，在这个例子中，该字符串为：
+# 对 SQLAlchemy 进行配置，SQLALCHEMY_DATABASE_URI 配置的是连接数据库的字符串，在这个例子中，该字符串为：
 # mysql+pymysql://root:123456@localhost:3306/school
 
 # 该字符串包含有数据库类型、用户名、密码、数据库名等信息，含义如下：
@@ -24,6 +24,8 @@ database = 'school'
 # 123456：访问数据库的密码
 # school：数据库名称
 uri = 'mysql+pymysql://%s:%s@localhost:3306/%s' % (user, password, database)
+# 应用的数据库连接必须配置在SQLALCHEMY_DATABASE_URI键中，同时需要把SQLALCHEMY_TRACK_MODIFICATIONS键设为False
+# 目的是为了不需要跟踪对象变化时降低内存消耗。db是SQLAlchemy类的实例，表示应用使用的数据库，之后所有的操作从db展开
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -41,6 +43,7 @@ class Student(db.Model):
     name = db.Column(db.String(255))
     # 映射 age 到表 students 的字段 age，类型为整数 (db.Integer)。
     age = db.Column(db.Integer)
+
 
 # 使用 ORM 模型定义了关系数据库和对象的映射关系后，可以使用面向对象的语法访问数据库，如下所示：
 with app.app_context():
