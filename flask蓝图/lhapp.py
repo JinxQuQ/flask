@@ -8,4 +8,3 @@ app.register_blueprint(lhproducts.blueprint)
 app.register_blueprint(lhnews.blueprint)
 
 app.run(debug=True,port=80)
-

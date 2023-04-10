@@ -1,0 +1,47 @@
+### 1.首先，安装相关库
+
+    $ pip3 install flask
+    $ pip3 install pymysql
+    $ pip3 install SQLAlchemy
+    $ pip3 install flask-sqlalchemy
+
+备注：这些不是很准，还是依照运行之后的结果来安装各种包为准。\
+如果执行了之后还是提示缺少module，则在“文件-设置-python解释器”中手动搜索并添加所需module
+
+### 2.创建数据库
+
+在 mysql 数据库中执行如下 SQL 脚本 db.sql：
+
+    DROP DATABASE IF EXISTS school;
+    CREATE DATABASE school;
+    USE school;
+    
+    CREATE TABLE students(
+        sno INT,
+        name VARCHAR(255),
+        age INT,
+        PRIMARY KEY(sno)
+    );
+    
+    INSERT students(sno, name, age) VALUES(1, 'tom', 11);
+    INSERT students(sno, name, age) VALUES(2, 'jerry', 12);
+    INSERT students(sno, name, age) VALUES(3, 'mike', 13);
+首先，如果存在数据库 school 则删除，然后建立一个新的、空的数据库 school；然后，创建表 students；最后，向数据库的表 students 中插入 3 条记录用于测试。
+
+备注：这些语句要挨个执行，可能要逐句执行，全部执行会报错
+
+### 3.创建SQLAlchemy对象
+创建文件 db.py，创建 SQLAlchemy 对象，如下所示：
+    from flask import Flask
+    from flask_sqlalchemy import SQLAlchemy
+    
+    app = Flask(__name__)
+    
+    user = 'root'
+    password = '123456'
+    database = 'school'
+    uri = 'mysql+pymysql://%s:%s@localhost:3306/%s' % (user, password, database)
+    app.config['SQLALCHEMY_DATABASE_URI'] = uri
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
+    db = SQLAlchemy(app)
