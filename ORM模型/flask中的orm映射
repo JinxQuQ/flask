@@ -45,3 +45,18 @@
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
     db = SQLAlchemy(app)
+
+    class Student(db.Model):
+        __tablename__ = 'students'
+        sno = db.Column(db.Integer, primary_key=True)
+        name = db.Column(db.String(255))
+        age = db.Column(db.Integer)
+    
+    with app.app_context():
+        students = Student.query.all()
+    for student in students:
+        print(student.sno, student.name, student.age)
+
+关于with app.app_context():
+
+见[flask中的回调报错Traceback (most recent call last)](https://juejin.cn/post/7220299565007044667/)
