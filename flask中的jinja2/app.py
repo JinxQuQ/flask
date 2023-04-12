@@ -1,4 +1,4 @@
-# app.py 是 Flask 程序，将渲染后的模板返回给浏览器；templates 是存放模板的目录，它和 app.py 位于相同的目录；templates/index.html 是模板文件。
+# app1.py 是 Flask 程序，将渲染后的模板返回给浏览器；templates 是存放模板的目录，它和 app1.py 位于相同的目录；templates/index.html 是模板文件。
 from flask import Flask, render_template
 # 从模块 flask 中导入函数 render_template，该函数将 jinja2 模板渲染为 html
 app = Flask(__name__)
